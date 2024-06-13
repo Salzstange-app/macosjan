@@ -15,3 +15,39 @@ sudo apt-get update
 sudo apt-get install qemu-kvm uml-utilities virt-manager git \
     wget libguestfs-tools p7zip-full make dmg2img tesseract-ocr \
     tesseract-ocr-eng genisoimage vim net-tools screen -y
+
+
+
+
+
+
+
+
+
+
+
+
+# Überprüfen, ob die CPU Virtualisierung unterstützt
+egrep -c '(vmx|svm)' /proc/cpuinfo
+
+# Installieren der notwendigen KVM-Pakete
+sudo apt-get update
+sudo apt-get install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils
+
+# Laden der KVM-Kernel-Module
+sudo modprobe kvm
+sudo modprobe kvm_intel  # Falls Sie eine Intel-CPU haben
+sudo modprobe kvm_amd    # Falls Sie eine AMD-CPU haben
+
+# Überprüfen, ob die Module geladen wurden
+lsmod | grep kvm
+
+# Hinzufügen des Benutzers zur KVM-Gruppe
+sudo usermod -aG kvm $USER
+
+# Überprüfen der Berechtigungen der KVM-Geräte
+ls -la /dev/kvm
+
+# Starten und Aktivieren des libvirtd-Dienstes
+sudo systemctl start libvirtd
+sudo systemctl enable libvirtd
