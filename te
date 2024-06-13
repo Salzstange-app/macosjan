@@ -19,6 +19,7 @@ sudo apt-get install qemu-kvm uml-utilities virt-manager git \
 
 
 
+qemu-system-x86_64 -m 4G -hda /path/to/your/vmdisk.qcow2 -cdrom /path/to/macos-installer.iso -boot d -enable-kvm
 
 
 
