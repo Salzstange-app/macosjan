@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Aktualisieren Sie die Paketliste
+sudo apt-get update
+
+# Fügen Sie das universe-Repository hinzu und aktualisieren Sie erneut
+sudo add-apt-repository universe
+sudo apt-get update
+
+# Fügen Sie das PPA für QEMU hinzu und aktualisieren Sie erneut
+sudo add-apt-repository ppa:jacob/virtualisation
+sudo apt-get update
+
+# Installieren Sie QEMU und andere benötigte Pakete
+sudo apt-get install qemu-kvm uml-utilities virt-manager git \
+    wget libguestfs-tools p7zip-full make dmg2img tesseract-ocr \
+    tesseract-ocr-eng genisoimage vim net-tools screen -y
